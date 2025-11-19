@@ -25,10 +25,10 @@ module VGA_Decoder #(
     parameter V_Sync_Pulse = 2,
     parameter V_Back_Porch = 33,
     // WIDTH
-    parameter H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
-    parameter V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
-    parameter H_WIDTH = $clog2(H_MAX),
-    parameter V_WIDTH = $clog2(V_MAX)
+    localparam H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
+    localparam V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
+    localparam H_WIDTH = $clog2(H_MAX),
+    localparam V_WIDTH = $clog2(V_MAX)
 ) (
     input  logic               iClk,
     input  logic               iRst,
@@ -41,7 +41,7 @@ module VGA_Decoder #(
 
     // Clock Devider
     localparam TARGET_FREQ = H_MAX * V_MAX * 60;  // 60Hz
-    parameter CLK_DIV = (100_000_000 + (TARGET_FREQ / 2)) / TARGET_FREQ;
+    localparam CLK_DIV = (100_000_000 + (TARGET_FREQ / 2)) / TARGET_FREQ;
 
     logic wP_Clk;
     logic [H_WIDTH-1:0] wH_Counter;
@@ -90,8 +90,8 @@ module VGA_Decoder #(
 endmodule
 
 module pixel_clk_gen #(
-    parameter CLK_DIV   = 4,
-    parameter CNT_WIDTH = $clog2(CLK_DIV)
+    parameter  CLK_DIV   = 4,
+    localparam CNT_WIDTH = $clog2(CLK_DIV)
 ) (
     input  logic iClk,
     input  logic iRst,
@@ -116,10 +116,10 @@ module pixel_clk_gen #(
 endmodule
 
 module pixel_counter #(
-    parameter H_MAX   = 800,
-    parameter V_MAX   = 525,
-    parameter H_WIDTH = $clog2(H_MAX),
-    parameter V_WIDTH = $clog2(V_MAX)
+    parameter  H_MAX   = 800,
+    parameter  V_MAX   = 525,
+    localparam H_WIDTH = $clog2(H_MAX),
+    localparam V_WIDTH = $clog2(V_MAX)
 ) (
     input  logic               iP_Clk,
     input  logic               iRst,
@@ -159,10 +159,10 @@ module vga_decoder_in #(
     parameter V_Sync_Pulse = 2,
     parameter V_Back_Porch = 33,
     // WIDTH
-    parameter H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
-    parameter V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
-    parameter H_WIDTH = $clog2(H_MAX),
-    parameter V_WIDTH = $clog2(V_MAX)
+    localparam H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
+    localparam V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
+    localparam H_WIDTH = $clog2(H_MAX),
+    localparam V_WIDTH = $clog2(V_MAX)
 ) (
     input  logic [H_WIDTH-1:0] iH_Counter,
     input  logic [V_WIDTH-1:0] iV_Counter,

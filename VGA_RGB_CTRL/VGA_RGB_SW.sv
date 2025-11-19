@@ -14,12 +14,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module VGA_RGB_SW #(
-    parameter H_MAX = 800,
-    parameter V_MAX = 640,
-    parameter H_WIDTH = $clog2(H_MAX),
-    parameter V_WIDTH = $clog2(V_MAX),
-    parameter X_SECTION = 8,
-    parameter Y_SECTION = 2
+    parameter  H_MAX     = 800,
+    parameter  V_MAX     = 640,
+    parameter  X_SECTION = 8,
+    parameter  Y_SECTION = 2,
+    localparam H_WIDTH   = $clog2(H_MAX),
+    localparam V_WIDTH   = $clog2(V_MAX)
 ) (
     // Clock & Reset
     input logic               iClk,
@@ -42,12 +42,15 @@ module VGA_RGB_SW #(
     output logic [3:0] oB_Port
 );
 
-    parameter TOTAL_SECTION = (X_SECTION * Y_SECTION);
-    parameter X_SECTION_PIXEL = 640 / X_SECTION;
-    parameter Y_SECTION_PIXEL = 480 / Y_SECTION;
-    parameter X_WIDTH = $clog2(X_SECTION);
-    parameter Y_WIDTH = $clog2(Y_SECTION);
-    parameter TOTAL_WIDTH = X_WIDTH + Y_WIDTH;
+    // X
+    localparam X_SECTION_PIXEL = 640 / X_SECTION;
+    localparam X_WIDTH = $clog2(X_SECTION);
+    // Y
+    localparam Y_SECTION_PIXEL = 480 / Y_SECTION;
+    localparam Y_WIDTH = $clog2(Y_SECTION);
+    // TOTAL
+    localparam TOTAL_SECTION = (X_SECTION * Y_SECTION);
+    localparam TOTAL_WIDTH = X_WIDTH + Y_WIDTH;
 
     // Divide Section
     logic [    X_WIDTH-1:0] wX_Section_Idx;

@@ -26,10 +26,10 @@ module VGA_RGB_Ctrl #(
     parameter V_Sync_Pulse = 2,
     parameter V_Back_Porch = 33,
     // WIDTH
-    parameter H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
-    parameter V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
-    parameter H_WIDTH = $clog2(H_MAX),
-    parameter V_WIDTH = $clog2(V_MAX),
+    localparam H_MAX   = H_Visible_Area+H_Front_Porch+H_Sync_Pulse+H_Back_Porch,
+    localparam V_MAX   = V_Visible_Area+V_Front_Porch+V_Sync_Pulse+V_Back_Porch,
+    localparam H_WIDTH = $clog2(H_MAX),
+    localparam V_WIDTH = $clog2(V_MAX),
     // Color Section
     parameter X_SECTION = 8,
     parameter Y_SECTION = 2
